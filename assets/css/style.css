@@ -1,0 +1,20 @@
+*{
+    padding:0;
+    margin:0;
+
+}
+
+.container{
+    display: grid;
+    grid-template-columns:60% 60%;
+    margin:200px;
+
+}
+footer{
+    width:100%;
+    padding: 10px;
+}
+
+.row,.col,form,a,h2{
+   margin:10px;
+}

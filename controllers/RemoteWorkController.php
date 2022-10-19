@@ -28,16 +28,50 @@ class RemoteWorkController {
         $this->view->render("remote/remoteWorkForm");
     }
 
-    function delete($requestInfo){
+    function create($requestArray){
 
-        $action =$requestInfo["action"];
+        if(sizeof($_POST)>0){
+            $member = $this->model->create($requestArray);
+
+            if ($member[0]) {
+                header("Location:index.php?controller=RemoteWork&action=getAll");
+
+            } else {
+                echo $member[1];
+            }
+        }else {
+            $this->view->action = $requestArray["action"];
+            $this->view->render("remote/remoteWorkForm");
+        }
+           
+    }
+
+    function update($requestArray){
+        
+        if(sizeof($_POST)>0){
+            $member = $this->model->update($requestArray);
+
+            if ($member[0]) {
+                header("Location:index.php?controller=RemoteWork&action=getAll");
+
+            } else {
+                echo $member[1];
+            }
+        }else {
+            $this->view->action = $requestArray["action"];
+            $this->view->render("faceToFace/remoteWorkForm");
+        }
+    }
+
+    function delete($requestInfo){
+            
         $deleteMember = null ;
-        if(isset($request["id"])){
-            $deleteMember =$this->model->delete($request["id"]);
-            header("Location:index.php?controller=FaceToFace&action=getAll");
+        if(isset($requestInfo["id"])){
+            $deleteMember =$this->model->delete($requestInfo["id"]);
+            header("Location:index.php?controller=RemoteWork&action=getAll");
         }else{ 
             echo "ha ocurrido un error";
-            header("Location:index.php?controller=FaceToFace&action=getAll");
+            header("Location:index.php?controller=RemoteWork&action=getAll");
 
         }
     }

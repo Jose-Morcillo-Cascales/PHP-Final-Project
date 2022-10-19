@@ -1,9 +1,9 @@
 <?php
-session_start();
 
 class Router {
 
     function __construct(){
+        session_start();
 
         
         if(isset($_GET['controller'])) {
@@ -11,9 +11,10 @@ class Router {
             
             $controller= $_GET['controller']."Controller";
             $controllerRoot = CONTROLLERS. $controller.".php";
+                
 
             if(($controller==='LoginController') && (!isset($_SESSION['user']))){
-               
+
                 if(file_exists( $controllerRoot)) {
                     
                     require_once $controllerRoot;
@@ -23,13 +24,14 @@ class Router {
                     
                     echo "error";
                 }
-            }else if($_SESSION['user']){
-                echo $controllerRoot;
+
+            }else if($_SESSION['user'] ){
                 if(file_exists( $controllerRoot)) {
                     
                     require_once $controllerRoot;
                    
                      new $controller();
+                     
                 } else {
                     
                     echo "error";
@@ -37,7 +39,7 @@ class Router {
             }
            
         } else {
-            require_once VIEWS ."main/login.php";
+            require_once VIEWS ."main/main.php";
         }
     }
 

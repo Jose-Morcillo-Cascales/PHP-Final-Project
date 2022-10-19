@@ -24,7 +24,6 @@ class LoginController  {
     }
 
     function logout(){
-        
         session_destroy();
         $this->view->render("main/login");
 

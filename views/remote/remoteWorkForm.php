@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+  </head>
     <title>Remote Work </title>
 </head>
 <body>
-<div class="container">
-        <h1>Remote Work Form!</h1>
+<?php require_once("./assets/html/header.php")?>
+
+
+        <h1 class= "text-center text-danger">Remote Work Form</h1>
 
         <?php
         if ($this->action == "getOne" && (!isset($this->data) || !$this->data || sizeof($this->data) == 0)) {
@@ -85,10 +91,17 @@
                         <label for="user_password">password</label>
                         <input required type="password" value="<?php echo isset($this->data['user_password']) ? $this->data['user_password'] : null ?>" class="form-control" id="user_password" name="user_password" aria-describedby="user_password" placeholder="Enter password">
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a id="return" class="btn btn-secondary" href="<?php echo "?controller=RemoteWork&action=getAll"; ?>">Return</a>
+                    <div class="row justify-content-between">
+                    <button type="submit" class = 'col-2 btn btn-outline-danger'>Submit</button>
+                    <a id="return" class="col-2 btn btn-danger" href="<?php echo "?controller=RemoteWork&action=getAll"; ?>">Return</a>
+                    </div>
+                    
         </form>
-    </div>
+    
+    <?php require_once("./assets/html/footer.php")?>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 </body>
 </html>

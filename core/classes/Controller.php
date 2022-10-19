@@ -11,10 +11,11 @@ trait Controller
         $this->model = $this->loadModel($_REQUEST["controller"]);
         $controllerName=$_REQUEST["controller"]."Controller";
         $action = "";
-
         if (isset($_REQUEST["action"])) {
-            
+
+
             $action = $_REQUEST["action"];
+            
         }
 
         if (method_exists($controllerName, $action)) {
